@@ -9,7 +9,6 @@ contract CounterTest is Test {
 
     function setUp() public {
         counter = new Counter();
-
     }
 
     function testInc() public {
@@ -17,4 +16,20 @@ contract CounterTest is Test {
         assertEq(counter.count(), 1);
     }
 
+    function testFailDec() public {
+        counter.dec();
+    }
+
+    function testDecUnderflow() public {
+        vm.expectRevert(stdError.arithmeticError);
+        counter.dec();
+    }
+
+    function testDec() public {
+        counter.inc();
+        counter.inc();
+        counter.dec();
+        assertEq(counter.count(), 1);
+    }
 }
+
