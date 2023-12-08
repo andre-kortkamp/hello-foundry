@@ -32,4 +32,3 @@ contract CounterTest is Test {
         assertEq(counter.count(), 1);
     }
 }
-
